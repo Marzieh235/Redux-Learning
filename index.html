@@ -42,6 +42,7 @@
 
 
       render();
+      store.subscribe(render);
 
       document.getElementById('increment')
         .addEventListener('click', function () {
@@ -58,12 +59,16 @@
       document.getElementById('incrementIfOdd')
         .addEventListener('click', function () {
              // increment If Odd counter
-             
+             if(store.getState().counterOne % 2 !== 0) {
+                store.dispatch({ type : 'INCREMENT'})
+             }
         })
 
       document.getElementById('incrementAsync')
         .addEventListener('click', function () {
-            // increment async
+            setTimeout(() => {
+              store.dispatch({ type : 'INCREMENT'})
+            }, 1000);
         })
     </script>
   </body>
